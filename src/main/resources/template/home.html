@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YardFlow - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.5px, transparent 1px);
+      background-size: 25px 25px;}
+  </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-200">
+
+<!-- Header com Logout -->
+<header class="bg-green-600 p-4 shadow-md flex justify-between items-center">
+  <h1 class="text-white text-xl font-bold">YardFlow</h1>
+  <div th:replace="~{fragmentos :: form-logout}"></div>
+
+</header>
+
+<div class="flex flex-grow">
+
+  <!-- Conteúdo principal -->
+  <main class="flex-1 p-10">
+
+    <!-- Boas-vindas -->
+    <section>
+      <p class="text-lg text-green-900 mb-6">
+        Olá 👋
+
+      </p>
+      <p class="text-lg text-green-900 mb-6">
+        Você está visualizando o pátio:
+        <span class="font-semibold text-green-900" th:text="${nome}"></span>
+      </p>
+    </section>
+
+    <!-- Dashboard de cards -->
+    <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <!-- Total de vagas -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg">
+          <h3 class="text-green-900 text-center text-2xl font-semibold mb-2">Total de vagas</h3>
+          <p class="text-3xl font-bold text-center text-blue-400" th:text="${vagasTotal}">0</p>
+        </div>
+
+        <!-- Vagas ocupadas -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg">
+          <h3 class="text-green-900 text-2xl text-center font-semibold mb-2">Vagas ocupadas</h3>
+          <p class="text-3xl font-bold text-center text-orange-400" th:text="${vagasOcupadas}">0</p>
+        </div>
+
+        <!-- Vagas livres -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg">
+          <h3 class="text-green-900 text-2xl text-center font-semibold mb-4">Vagas livres </h3>
+          <p class="text-3xl font-bold text-center text-green-400" th:text="${vagasLivres}">0</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <!-- Motos +5 dias -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg text-center">
+          <h3 class="text-green-900 text-2xl text-center font-semibold mb-4">Motos +5 dias</h3>
+          <p class="text-3xl font-bold text-center text-red-400" th:text="${motosMais5Dias}">0</p>
+        </div>
+
+        <!-- Lista de moto do pátio -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/consultas/listaMoto"><h3 class="text-green-900 text-center text-2xl font-semibold mb-4"
+          >Lista de moto no pátio</h3></a>
+        </div>
+
+        <!-- Lista de YardFlow IoT -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/yardflow/lista"><h3 class="text-green-900 text-center text-2xl font-semibold mb-4"
+          >Lista de YardFlow IoT</h3></a>
+        </div>
+
+        <!-- Lista de YardFlow IoT -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/consultas/listaUsuario"><h3 class="text-green-900 text-center text-2xl font-semibold mb-4"
+          >Lista de Usuários</h3></a>
+        </div>
+
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <!-- Cadastro de usuário -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/cadastros/usuario"><h3 class="text-green-900 text-center text-2xl font-semibold mb-4"
+                                           >Cadastro de usuário</h3></a>
+        </div>
+
+        <!-- Dados do pátio -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/cadastros/patio"> <h3 class="text-green-900 text-center text-2xl font-semibold mb-4">Cadastro do pátio</h3></a>
+        </div>
+
+        <!-- Registro de moto -->
+        <div class="bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2">
+          <a href="/cadastros/moto"><h3 class="text-green-900 text-center text-2xl font-semibold mb-4">Registrar de moto</h3></a>
+        </div>
+
+
+      </div>
+    </section>
+
+      <div class="mt-6">
+        <!-- Localizar moto -->
+        <div class=" bg-green-20 border border-green-900 rounded-2xl p-6 shadow-lg ">
+          <a href="/consultas/localizarMoto"><h3 class="text-green-900 text-center text-4xl text-center
+              font-semibold mb-4" >Localizar moto</h3></a>
+        </div>
+      </div>
+
+  </main>
+</div>
+
+<!-- Rodapé -->
+<footer th:replace="~{fragmentos :: rodape}"></footer>
+
+</body>
+</html>

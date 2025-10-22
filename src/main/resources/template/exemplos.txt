@@ -1,0 +1,460 @@
+cadastro pátio
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Pátio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+      background-size: 25px 25px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="flex-1 flex items-center justify-center p-8">
+  <div class="w-full max-w-4xl bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+    <!-- Título -->
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+      Cadastro do Pátio
+    </h1>
+
+    <!-- Formulário -->
+    <form th:object="${patio}"
+          th:action="${id_patio} == null ? @{/patio/salvar} : @{/patio/editar/{id_patio}(id_patio=${patio.id_patio})}"
+          method="post" class="space-y-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="nome" class="block text-xl font-medium text-green-700">Nome</label>
+          <input type="text" id="nome" th:field="*{name}" required
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800 focus:ring-2 focus:ring-green-500">
+        </div>
+        <div>
+          <label for="cep" class="block text-xl font-medium text-green-700">CEP</label>
+          <input type="text" id="cep" th:field="*{endereco.cep}" required
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800 focus:ring-2 focus:ring-green-500">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="rua" class="block text-xl font-medium text-green-700">Rua</label>
+          <input type="text" id="rua" th:field="*{endereco.logradouro}"
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+        </div>
+        <div>
+          <label for="numero" class="block text-xl font-medium text-green-700">Número</label>
+          <input type="text" id="numero" th:field="*{endereco.numero}"
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label for="bairro" class="block text-xl font-medium text-green-700">Bairro</label>
+          <input type="text" id="bairro" th:field="*{endereco.bairro}"
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+        </div>
+        <div>
+          <label for="cidade" class="block text-xl font-medium text-green-700">Cidade</label>
+          <input type="text" id="cidade" th:field="*{endereco.cidade}"
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+        </div>
+        <div>
+          <label for="estado" class="block text-xl font-medium text-green-700">Estado</label>
+          <input type="text" id="estado" th:field="*{endereco.estado}"
+                 class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+        </div>
+      </div>
+
+      <div>
+        <label for="vagas" class="block text-xl font-medium text-green-700">Quantidade de Vagas</label>
+        <input type="number" id="vagas" th:field="*{qtd_vagas}" required
+               class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+      </div>
+
+      <!-- Botões -->
+      <div class="text-center">
+        <button type="submit"
+                class="w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-700
+                       hover:from-green-600 hover:to-green-800 rounded-lg shadow-lg font-semibold text-white transition">
+          Salvar
+        </button>
+        <a th:href="@{/patio/listar}"
+           class="mt-4 inline-block w-full py-3 px-6 bg-gray-400 hover:bg-red-500 rounded-lg shadow-lg font-semibold text-white transition">
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+
+
+cadastro usuário
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+      background-size: 25px 25px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="flex-1 flex items-center justify-center p-8">
+  <div class="w-full max-w-3xl bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+      Cadastro de Usuário
+    </h1>
+
+    <form th:object="${usuario}" th:action="@{/usuario/salvar}" method="post" class="space-y-6">
+
+      <div>
+        <label for="nome" class="block text-xl font-medium text-green-700">Nome</label>
+        <input type="text" id="nome" th:field="*{nome}" required
+               class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+      </div>
+
+      <div>
+        <label for="email" class="block text-xl font-medium text-green-700">Email</label>
+        <input type="email" id="email" th:field="*{email}" required
+               class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+      </div>
+
+      <div>
+        <label for="senha" class="block text-xl font-medium text-green-700">Senha</label>
+        <input type="password" id="senha" th:field="*{senha}" required
+               class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+      </div>
+
+      <div>
+        <label for="perfil" class="block text-xl font-medium text-green-700">Perfil</label>
+        <select id="perfil" th:field="*{perfil}"
+                class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+          <option value="ADMIN">Admin</option>
+          <option value="USER">Usuário</option>
+        </select>
+      </div>
+
+      <!-- Botões -->
+      <div class="text-center">
+        <button type="submit"
+                class="w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-700
+                       hover:from-green-600 hover:to-green-800 rounded-lg shadow-lg font-semibold text-white transition">
+          Salvar
+        </button>
+        <a th:href="@{/usuario/listar}"
+           class="mt-4 inline-block w-full py-3 px-6 bg-gray-400 hover:bg-red-500 rounded-lg shadow-lg font-semibold text-white transition">
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+
+
+ VERIFICAR A HOME - PROCURAR MANTER O LAYOUT - COM EXCESSÃO DA COLUNA E REMOVER O PRETO E ROXO
+
+
+ ----------------------------
+
+ YARD FLOW
+
+ <!DOCTYPE html>
+ <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+ <head>
+   <meta charset="UTF-8">
+   <title>YardFlow</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+     body {
+       background-color: #D7DFD9;
+       background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+       background-size: 25px 25px;
+     }
+   </style>
+ </head>
+ <body class="flex flex-col min-h-screen text-gray-800">
+
+ <header th:replace="fragments/header :: header"></header>
+
+ <main class="flex-1 flex items-center justify-center p-8">
+   <div class="w-full max-w-5xl bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+     <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+       YardFlow - Fluxo de Entrada e Saída
+     </h1>
+
+     <table class="w-full border-collapse bg-gray-100 rounded-lg shadow-lg">
+       <thead class="bg-green-700 text-white">
+         <tr>
+           <th class="p-3 text-left">ID</th>
+           <th class="p-3 text-left">Moto</th>
+           <th class="p-3 text-left">Data Entrada</th>
+           <th class="p-3 text-left">Data Saída</th>
+           <th class="p-3 text-center">Ações</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr th:each="fluxo : ${yardflows}" class="border-b hover:bg-green-50">
+           <td class="p-3" th:text="${fluxo.id}"></td>
+           <td class="p-3" th:text="${fluxo.moto.placa}"></td>
+           <td class="p-3" th:text="${fluxo.dataEntrada}"></td>
+           <td class="p-3" th:text="${fluxo.dataSaida}"></td>
+           <td class="p-3 text-center space-x-2">
+             <a th:href="@{/yardflow/editar/{id}(id=${fluxo.id})}"
+                class="px-4 py-2 bg-green-600 hover:bg-green-800 text-white rounded-lg">Editar</a>
+             <a th:href="@{/yardflow/excluir/{id}(id=${fluxo.id})}"
+                class="px-4 py-2 bg-gray-400 hover:bg-red-500 text-white rounded-lg">Excluir</a>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+
+   </div>
+ </main>
+
+ <footer th:replace="fragments/footer :: footer"></footer>
+ </body>
+ </html>
+
+<form th:object="${yardflow}" th:action="@{/} @{//{}(id_yf = ${yardflow.id_yf})}"
+        method="post" class="max-w-2xl mx-auto bg-white p-6 shadow-lg rounded-xl space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+
+      <p>Preencha um dos campos para localizar a moto</p>
+
+      Número do Yard Flow: <input type="text" name="id_yf" placeholder="Yard Flow" class="border rounded-lg p-2 w-full" th:field="*{id_yf}"
+             th:errorclass="is-invalid"/><div class="invalid-feedback" th:errors="*{id_yf}"></div>
+
+      Placa da moto: <input type="text" name="placa" placeholder="PLACA" class="border rounded-lg p-2 w-full" th:field="*{moto.placa}"
+             th:errorclass="is-invalid"/><div class="invalid-feedback" th:errors="*{moto.placa}"></div>
+
+      Chassi da moto:<input type="text" name="rua" placeholder="Chassi" class="border rounded-lg p-2 w-full" th:field="*{moto.chassi}"/>
+      <div class="invalid-feedback" th:errors="*{moto.chassi}"></div>
+
+    </div>
+  </form>
+
+------------ LISTA DE MOTOS
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Motos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+      background-size: 25px 25px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="flex-1 flex items-center justify-center p-8">
+  <div class="w-full max-w-5xl bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+      Lista de Motos
+    </h1>
+
+    <table class="w-full border-collapse bg-gray-100 rounded-lg shadow-lg">
+      <thead class="bg-green-700 text-white">
+        <tr>
+          <th class="p-3 text-left">ID</th>
+          <th class="p-3 text-left">Modelo</th>
+          <th class="p-3 text-left">Placa</th>
+          <th class="p-3 text-left">Chassi</th>
+          <th class="p-3 text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="moto : ${motos}" class="border-b hover:bg-green-50">
+          <td class="p-3" th:text="${moto.id_moto}"></td>
+          <td class="p-3" th:text="${moto.modelo}"></td>
+          <td class="p-3" th:text="${moto.placa}"></td>
+          <td class="p-3" th:text="${moto.chassi}"></td>
+          <td class="p-3 text-center space-x-2">
+            <a th:href="@{/moto/editar/{id}(id=${moto.id_moto})}"
+               class="px-4 py-2 bg-green-600 hover:bg-green-800 text-white rounded-lg">Editar</a>
+            <a th:href="@{/moto/excluir/{id}(id=${moto.id_moto})}"
+               class="px-4 py-2 bg-gray-400 hover:bg-red-500 text-white rounded-lg">Excluir</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+
+
+------------- LOGIN
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+      background-size: 25px 25px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen items-center justify-center text-gray-800">
+
+<div class="w-full max-w-md bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+  <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+    Login
+  </h1>
+
+  <form th:action="@{/login}" method="post" class="space-y-6">
+    <div>
+      <label for="email" class="block text-xl font-medium text-green-700">Email</label>
+      <input type="email" id="email" name="username" required
+             class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+    </div>
+    <div>
+      <label for="senha" class="block text-xl font-medium text-green-700">Senha</label>
+      <input type="password" id="senha" name="password" required
+             class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+    </div>
+
+    <button type="submit"
+            class="w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-700
+                   hover:from-green-600 hover:to-green-800 rounded-lg shadow-lg font-semibold text-white transition">
+      Entrar
+    </button>
+  </form>
+</div>
+
+</body>
+</html>
+
+
+----------- LOCALIZAR MOTO
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Localizar Moto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #D7DFD9;
+      background-image: radial-gradient(rgba(8, 200, 38, 0.2) 0.2px, transparent 1px);
+      background-size: 25px 25px;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-800">
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="flex-1 flex items-center justify-center p-8">
+  <div class="w-full max-w-3xl bg-gray/70 border-4 border-green-700 rounded-2xl p-10 shadow-lg">
+
+    <h1 class="text-5xl font-bold text-center text-green-800 mb-10">
+      Localizar Moto
+    </h1>
+
+    <form th:action="@{/moto/localizar}" method="get" class="space-y-6">
+      <div>
+        <label for="placa" class="block text-xl font-medium text-green-700">Placa</label>
+        <input type="text" id="placa" name="placa" required
+               class="mt-1 w-full px-4 py-2 bg-gray-100 border border-green-700 rounded-lg text-gray-800">
+      </div>
+      <button type="submit"
+              class="w-full py-3 px-6 bg-gradient-to-r from-green-500 to-green-700
+                     hover:from-green-600 hover:to-green-800 rounded-lg shadow-lg font-semibold text-white transition">
+        Buscar
+      </button>
+    </form>
+
+    <div th:if="${moto}" class="mt-10 bg-white rounded-xl p-6 shadow-lg border border-green-700">
+      <h2 class="text-2xl font-bold text-green-700 mb-4">Resultado:</h2>
+      <p><strong>Modelo:</strong> <span th:text="${moto.modelo}"></span></p>
+      <p><strong>Placa:</strong> <span th:text="${moto.placa}"></span></p>
+      <p><strong>Chassi:</strong> <span th:text="${moto.chassi}"></span></p>
+      <p><strong>Status:</strong> <span th:text="${moto.status}"></span></p>
+    </div>
+  </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+
+=================== MENU LATERAL ================
+
+ <!-- Menu lateral -->
+  <aside class="w-64 bg-black/70 border-r border-purple-700/40 p-6">
+    <nav class="space-y-4">
+      <a href="#" class="flex items-center space-x-3 text-purple-300 hover:text-purple-500 transition">
+        <i class="fa-solid fa-gauge"></i> <!-- ícone (FontAwesome ou outro) -->
+        <span>Dashboard</span>
+      </a>
+
+      <!-- Vai para a página de cadstro de moto-->
+      <a href="#" class="flex items-center space-x-3 text-purple-300 hover:text-purple-500 transition">
+        <i class="fa-solid fa-motorcycle"></i>
+        <span>Registrar Moto</span>
+      </a>
+      <a href="#" class="flex items-center space-x-3 text-purple-300 hover:text-purple-500 transition">
+        <i class="fa-solid fa-square-parking"></i>
+        <span>Vagas</span>
+      </a>
+      <a href="#" class="flex items-center space-x-3 text-purple-300 hover:text-purple-500 transition">
+        <i class="fa-solid fa-warehouse"></i>
+        <span>Pátios</span>
+      </a>
+    </nav>
+  </aside>
+
+
+  ===========================================================
+
+   <!-- Botão que abre o modal -->
+      <button onclick="document.getElementById('modalMoto').classList.remove('hidden')"
+              class="mt-4 px-6 py-3 bg-gradient-to-r from-green-500 to-green-700
+             text-white font-semibold rounded-lg shadow-lg hover:from-green-600 hover:to-green-800 transition">
+        Ver Moto
+      </button>
