@@ -107,7 +107,6 @@ src
 │ └── YardFlowApplication
 └── resources
 ├── application.properties
-└── import.sql
 ```
 
 
