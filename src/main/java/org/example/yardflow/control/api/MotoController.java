@@ -30,7 +30,7 @@ public class MotoController {
     private ModelMapper mm;
 
 
-    // não fiz um endpoint - estou avaliando
+
     @GetMapping
     public ResponseEntity<Page<MotoDTO>> findAll(Pageable pageable) {
         Page<MotoDTO> motos = mtS.findAllPaginado(pageable);

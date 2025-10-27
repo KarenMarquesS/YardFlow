@@ -37,7 +37,7 @@ public class PatioCachingService {
     }
 
     @Cacheable(value="patioCache", key = "#name")
-    public List<Patio> buscarPatioPorNome(String name){
+    public Patio buscarPatioPorNome(String name){
         if (name == null || name.isBlank()){
             throw new IllegalArgumentException("O nome do pátio não pode ser vazio");
         }
@@ -45,7 +45,7 @@ public class PatioCachingService {
         if (patio == null){
             throw new IllegalArgumentException("Nome " + name + "Não encontrado");
         }
-        return (List<Patio>) patio;
+        return patio;
     }
 
 

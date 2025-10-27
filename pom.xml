@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>org.example</groupId>
-    <artifactId>YarkFlow</artifactId>
+    <artifactId>YardFlow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>YarkFlow</name>
-    <description>YarkFlow - Gerenciamento de pátio</description>
+    <name>YardFlow</name>
+    <description>YardFlow - Gerenciamento de pátio</description>
 
     <dependencies>
 
@@ -113,14 +113,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>10.17.2</version>
-        </dependency>
-
-
         <!-- HATEOAS -->
         <!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
         <dependency>
@@ -154,7 +146,6 @@
             <artifactId>flyway-sqlserver</artifactId>
             <version>11.14.1</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
         <dependency>

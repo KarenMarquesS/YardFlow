@@ -46,7 +46,7 @@ public class PatioHTMLController {
 
     @GetMapping("/nome/{name}")
     public ModelAndView buscarPorNome(@PathVariable String name) {
-        List<Patio> patios = ptS.buscarPatioPorNome(name);
+        Patio patios = ptS.buscarPatioPorNome(name);
         ModelAndView mv = new ModelAndView("patio_lista");
         mv.addObject("patios", patios);
         return mv;

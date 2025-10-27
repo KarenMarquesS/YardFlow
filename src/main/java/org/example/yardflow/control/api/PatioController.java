@@ -58,14 +58,14 @@ public class PatioController {
     }
 
     @GetMapping("/nome/{name}")
-    public ResponseEntity<List<PatioDTO>> buscarPorNome(@PathVariable String name) {
-        List<Patio> patio =ptS.buscarPatioPorNome(name);
+    public ResponseEntity<PatioDTO> buscarPorNome(@PathVariable String name) {
+        Patio patio = ptS.buscarPatioPorNome(name);
 
-        if (patio.isEmpty()) {
+        if (patio == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum pátio encontrado com este nome");
         }
 
-        List<PatioDTO> dto = patio.stream().map(PatioDTO::new).toList();
+        PatioDTO dto = new PatioDTO(patio);
         return ResponseEntity.ok(dto);
     }
 
