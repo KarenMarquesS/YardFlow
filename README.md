@@ -1,6 +1,6 @@
 # YardFlow - Gestão Inteligente de Pátio de Motos 🏍️
 
-                                                       >>> ORGANIZE | LOCALIZE | FLUA <<<
+                                          >>> ORGANIZE | LOCALIZE | FLUA <<<
 
 ```
     O YardFlow é um sistema integrado de gerenciamento e localização de veículos que combina dispositivos IoT com uma plataforma web robusta.
