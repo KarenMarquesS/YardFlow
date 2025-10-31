@@ -14,8 +14,10 @@ public class ViewRoutesConfig implements WebMvcConfigurer {
         registry.addViewController("/cadastros/usuario").setViewName("cadastros/usuario");
         registry.addViewController("/cadastros/yardflow").setViewName("cadastros/yardflow");
         registry.addViewController("/consultas/listaMoto").setViewName("consultas/listaMoto");
+        registry.addViewController("/consultas/listaPatio").setViewName("consultas/listaPatio");
         registry.addViewController("/consultas/localizarMoto").setViewName("consultas/localizarMoto");
         registry.addViewController("/consultas/detalhesMoto").setViewName("consultas/detalhesMoto");
+        registry.addViewController("/patio-view/inserirNovo").setViewName("cadastros/patio");
     }
 }
 

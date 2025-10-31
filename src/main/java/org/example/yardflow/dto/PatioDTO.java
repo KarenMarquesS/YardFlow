@@ -18,9 +18,9 @@ public class PatioDTO {
     // Conversão de entidade em DTO
     public Patio toEntity() {
         Patio p = new Patio();
-        this.idpatio = p.getIdpatio();
-        this.qtdvagas = p.getQtdvagas();
-        this.name = p.getName();
+        p.setIdpatio(this.idpatio);
+        p.setQtdvagas(this.qtdvagas);
+        p.setName(this.name);
 
         return p;
     }
@@ -44,7 +44,7 @@ public class PatioDTO {
         return idpatio;
     }
 
-    public void setId_patio(long idpatio) {
+    public void setIdpatio(long idpatio) {
         this.idpatio = idpatio;
     }
 
@@ -61,7 +61,7 @@ public class PatioDTO {
         return qtdvagas;
     }
 
-    public void setQtd_vagas(@Positive long qtdvagas) {
+    public void setQtdvagas(@Positive long qtdvagas) {
         this.qtdvagas = qtdvagas;
     }
 }

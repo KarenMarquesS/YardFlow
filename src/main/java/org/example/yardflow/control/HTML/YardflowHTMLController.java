@@ -127,12 +127,16 @@ public class YardflowHTMLController {
         yardflowExistente.setSerial(yardflow.getSerial());
         yardflowExistente.setDtUltimoAcionamento(yardflow.getDtUltimoAcionamento());
 
+        // Limpar associação anterior da moto se existir
+        if (yardflowExistente.getMoto() != null) {
+            yardflowExistente.getMoto().setYardflow(null);
+        }
+
+        // Estabelecer nova associação se idmoto foi informado
         if (idmoto != null && idmoto != 0) {
             Moto moto = motoRepo.findById(Long.valueOf(idmoto))
                     .orElseThrow(() -> new IllegalArgumentException("Moto não encontrada"));
-            yardflowExistente.setMoto(moto);
-        } else {
-            yardflowExistente.setMoto(null);
+            moto.setYardflow(yardflowExistente);
         }
 
         yfR.save(yardflowExistente);

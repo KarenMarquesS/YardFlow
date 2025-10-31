@@ -177,6 +177,13 @@ public class HomeHTMLController {
         return mv;
     }
 
+    @GetMapping("/consultas/listaPatio")
+    public ModelAndView viewListaPatio() {
+        ModelAndView mv = new ModelAndView("consultas/listaPatio");
+        mv.addObject("patios", ptS.buscarTodosPatios());
+        return mv;
+    }
+
     @GetMapping("/consultas/localizarMoto")
     public ModelAndView viewLocalizarMoto() {
         ModelAndView mv = new ModelAndView("consultas/localizarMoto");

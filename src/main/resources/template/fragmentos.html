@@ -22,8 +22,7 @@
 
 
 <!--Home-->
-<button th:fragment="voltarHome" type="button" class="px-6 py-2 rounded-xl text-white shadow-md bg-gradient-to-r
-      from-blue-500 to-blue-700">
+<button th:fragment="voltarHome" type="button" class="px-3 md:px-6 py-2 rounded-xl text-white shadow-md bg-gradient-to-r from-blue-500 to-blue-700 text-sm md:text-base">
   <a href="/home"><b>Voltar para Home</b></a>
 </button>
 
@@ -33,31 +32,31 @@
 
 <!-- Logout -->
 <form th:fragment="form-logout" th:action="@{/logout}" method="post">
-  <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200">
+  <button type="submit" class="px-3 md:px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200 text-sm md:text-base">
     <i class="fas fa-sign-out-alt mr-1"></i>
     Logout
   </button>
 </form>
 
 <!-- Cancelar -->
-<button th:fragment="botao-cancelar" type="button" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition duration-200">
+<button th:fragment="botao-cancelar" type="button" class="px-4 md:px-6 py-2 md:py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition duration-200 text-sm md:text-base">
   <i class="fas fa-times mr-2"></i>
   Cancelar
 </button>
 
 <!-- Salvar -->
-<button th:fragment="botao-salvar" type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition duration-200">
+<button th:fragment="botao-salvar" type="submit" class="px-4 md:px-6 py-2 md:py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition duration-200 text-sm md:text-base">
   <i class="fas fa-save mr-2"></i>
   Salvar
 </button>
 
 
 <!-- Rodapé -->
-<footer th:fragment="rodape" class="bg-green-500 w-full fixed bottom-0 left-0 flex items-center justify-center gap-3 py-2">
-  <img th:src="@{/img/logoDF.png}" alt="logoYF" class="h-8 w-auto"/>
-  <p class="text-center text-gray-950 text-sm mt-6"><b>· DEV · FORGE ·</b></p>
-  <p class="text-center text-gray-950 text-sm ">&copy; 2025 - Yard Flow</p>
-  <p class="text-center text-gray-950 text-sm ">yardflow@devforge.com.br</p>
+<footer th:fragment="rodape" class="bg-green-500 w-full fixed bottom-0 left-0 flex flex-wrap items-center justify-center gap-1 md:gap-3 py-2 px-2">
+  <img th:src="@{/img/logoDF.png}" alt="logoYF" class="h-6 md:h-8 w-auto"/>
+  <p class="text-center text-gray-950 text-xs md:text-sm mt-6"><b>· DEV · FORGE ·</b></p>
+  <p class="text-center text-gray-950 text-xs md:text-sm ">&copy; 2025 - Yard Flow</p>
+  <p class="text-center text-gray-950 text-xs md:text-sm ">yardflow@devforge.com.br</p>
 </footer>
 
 

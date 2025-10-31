@@ -21,8 +21,10 @@
     <h1 class="text-5xl font-bold text-center text-green-800 mb-8">Cadastro do Pátio</h1>
 
     <form th:object="${patioDTO}"
-          th:action="@{/patio-view/inserirNovo}"
+          th:action="${patioDTO.idpatio == null or patioDTO.idpatio == 0} ? @{/patio-view/inserirNovo} : @{/patio/atualizar/{idpatio}(idpatio=${patioDTO.idpatio})}"
           method="post" class="space-y-6">
+      
+      <input type="hidden" th:field="*{idpatio}"/>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>

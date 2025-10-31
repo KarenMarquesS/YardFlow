@@ -54,15 +54,32 @@ public class UsuarioHTMLController {
     @PostMapping("/inserir")
     public ModelAndView inserirUsuario(Usuario usuario,
                                        @RequestParam(name = "idfuncao", required = false) Long idfuncao) {
-        usuario.setSenha(encoder.encode(usuario.getSenha()));
+        try {
+            usuario.setSenha(encoder.encode(usuario.getSenha()));
 
-        Funcao funcao = fR.findById(idfuncao).orElseThrow(() -> new RuntimeException("Função não encontrada"));
+            if (idfuncao == null) {
+                throw new IllegalArgumentException("Função é obrigatória ao cadastrar usuário");
+            }
 
-        //associa a função ao usuário - passando a variavel
-        usuario.setFuncao(funcao);
-        uR.save(usuario);
+            // valida email único antes de persistir
+            uR.findByEmail(usuario.getEmail()).ifPresent(u -> {
+                throw new IllegalArgumentException("Email já cadastrado");
+            });
 
-        return new ModelAndView("redirect:/home");
+            Funcao funcao = fR.findById(idfuncao).orElseThrow(() -> new IllegalArgumentException("Função não encontrada"));
+
+            usuario.setFuncao(funcao);
+            uR.save(usuario);
+
+            return new ModelAndView("redirect:/home");
+        } catch (Exception e) {
+            ModelAndView mv = new ModelAndView("cadastros/usuario");
+            
+            mv.addObject("usuario", new Usuario());
+            mv.addObject("lista_funcoes", fR.findAll());
+            mv.addObject("erro", "Erro ao inserir usuário: " + e.getMessage());
+            return mv;
+        }
     }
 
     @GetMapping("/lista")
@@ -99,7 +116,7 @@ public class UsuarioHTMLController {
         // Se idfuncao for null, mantém a função atual
         if (idfuncao != null) {
             Funcao funcao = fR.findById(idfuncao)
-                    .orElseThrow(() -> new RuntimeException("Função não encontrada"));
+                    .orElseThrow(() -> new IllegalArgumentException("Função não encontrada"));
             usuarioExistente.setFuncao(funcao);
         }
 

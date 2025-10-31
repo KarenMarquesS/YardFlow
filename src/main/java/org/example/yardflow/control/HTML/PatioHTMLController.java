@@ -16,13 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 
-@Controller("/patio")
+@Controller
+@RequestMapping("/patio")
 public class PatioHTMLController {
 
     @Autowired
     private PatioCachingService ptS;
-
-
 
 
     @GetMapping("/{idpatio}")
@@ -38,7 +37,7 @@ public class PatioHTMLController {
     @GetMapping("/qtd/{qtd_vagas}")
     public ModelAndView buscarPorQtdVagas(@PathVariable long qtd_vagas) {
         List<Patio> patios = ptS.buscarQtdVagas(qtd_vagas);
-        ModelAndView mv = new ModelAndView("patio_lista");
+        ModelAndView mv = new ModelAndView("consultas/listaPatio");
         mv.addObject("patios", patios);
         return mv;
     }
@@ -46,9 +45,9 @@ public class PatioHTMLController {
 
     @GetMapping("/nome/{name}")
     public ModelAndView buscarPorNome(@PathVariable String name) {
-        Patio patios = ptS.buscarPatioPorNome(name);
-        ModelAndView mv = new ModelAndView("patio_lista");
-        mv.addObject("patios", patios);
+        Patio patio = ptS.buscarPatioPorNome(name);
+        ModelAndView mv = new ModelAndView("consultas/listaPatio");
+        mv.addObject("patios", List.of(patio));
         return mv;
     }
 
@@ -60,6 +59,21 @@ public class PatioHTMLController {
         return mv;
     }
 
+    @GetMapping("/editar/{idpatio}")
+    public ModelAndView editarPatio(@PathVariable long idpatio) {
+        ModelAndView mv = new ModelAndView("cadastros/patio");
+        Patio patio = ptS.buscarPatioPorId(idpatio)
+                .orElseThrow(() -> new IllegalArgumentException("Pátio não encontrado"));
+        mv.addObject("patioDTO", new PatioDTO(patio));
+        return mv;
+    }
+
+    @GetMapping("/lista")
+    public ModelAndView listarPatios() {
+        ModelAndView mv = new ModelAndView("consultas/listaPatio");
+        mv.addObject("patios", ptS.buscarTodosPatios());
+        return mv;
+    }
 
     @PostMapping("/inserir")
     public ModelAndView inserir(@ModelAttribute PatioDTO dto) {
@@ -71,21 +85,22 @@ public class PatioHTMLController {
     @PostMapping("/atualizar/{idpatio}")
     public ModelAndView atualizar(@PathVariable long idpatio, @ModelAttribute PatioDTO dto) {
         ptS.atualizarPatio(idpatio, dto);
-        return new ModelAndView("redirect:/patio/lista");
+        return new ModelAndView("redirect:/consultas/listaPatio");
     }
 
-    @GetMapping("/patio-view/inserirNovo")
-    public ModelAndView viewPatioDados() {
-        ModelAndView mv = new ModelAndView("cadastros/patio");
-        // Busca o primeiro pátio existente ou cria um novo
-        List<Patio> patios = ptS.buscarTodosPatios();
-        if (!patios.isEmpty()) {
-            mv.addObject("patioDTO", new PatioDTO(patios.get(0)));
-        } else {
-            mv.addObject("patioDTO", new PatioDTO());
-        }
-        return mv;
+    @PostMapping("/deletar/{idpatio}")
+    public ModelAndView deletar(@PathVariable long idpatio) {
+        ptS.deletarPatio(idpatio);
+        return new ModelAndView("redirect:/consultas/listaPatio");
     }
+
+}
+
+@Controller
+class PatioViewHTMLController {
+
+    @Autowired
+    private PatioCachingService ptS;
 
     @PostMapping("/patio-view/inserirNovo")
     public ModelAndView inserirNovoPatio(@ModelAttribute PatioDTO dto) {
@@ -104,13 +119,6 @@ public class PatioHTMLController {
             mv.addObject("erro", "Erro ao salvar dados do pátio: " + e.getMessage());
             return mv;
         }
-    }
-
-
-    @PostMapping("/deletar/{idpatio}")
-    public ModelAndView deletar(@PathVariable long idpatio) {
-        ptS.deletarPatio(idpatio);
-        return new ModelAndView("redirect:/patio/lista");
     }
 
 }
