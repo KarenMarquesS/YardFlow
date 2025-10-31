@@ -1,5 +1,6 @@
 # YardFlow - Gestão Inteligente de Pátio de Motos 🏍️
-                                          >>> ORGANIZE | LOCALIZE | FLUA <<<
+
+                                                       >>> ORGANIZE | LOCALIZE | FLUA <<<
 
 ```
     O YardFlow é um sistema integrado de gerenciamento e localização de veículos que combina dispositivos IoT com uma plataforma web robusta.
@@ -8,7 +9,6 @@ localização rápida e precisa dos veículos em pátios extensos, otimizando o 
 Com tecnologia de rastreamento em tempo real, o YardFlow transforma a gestão de pátios, oferecendo controle total sobre a movimentação e
 posicionamento de cada veículo.
 ```
-
 
 
 ## 📌 Índice
@@ -24,27 +24,35 @@ posicionamento de cada veículo.
   
 
 ## 🚀 Funcionalidades
-- **Gerenciamento**:
-  - Fazer registros de entrada e de saida das Motos no Pátio
-  - Consultas do status da Moto
-- **Localização das Motos**:
-  - Consultar a localização da Moto
+  - **Gerenciamento**:
+    - Fazer registros de entrada e de saida das Motos no Pátio
+    - Consultas do status da Moto
+    - Cadastrar Pátio
+    - Cadastrar e Consultar dispositivo IoT 'YardFlow'
+    - Cadastrar e Consultar Usuário
+    
+  - **Localização das Motos**:
+    - Localizar o dispositio IoT 'YardFlow'
 
 
 ## 💻 Tecnologias
- - Java (v.17)
- - Maven (v.17)
- - SpringBoot (v. 3.4.4)
- - Oracle SQL Developer (v.12)
- - Idea Intellij IDEA
-  
+  - Java (v.17)
+  - Maven 
+  - SpringBoot (v. 3.4.4)
+  - Thymeleaf
+
+ - Persistência
+   - SQL Server
+   - Flyway 10.17.2 (migrations)
+
 
 ## 📋 Pré-requisitos
-- IDEA
-  - Intellij, ou
-  - Eclipse, ou outra da preferência
-- JDK 22
-- Maven 
+  - IDEA
+    - Intellij, ou
+    - Eclipse, ou outra da preferência
+  - JDK 17
+  - Maven (compatível com o projeto)
+  - SQL Server (versão compatível com o projeto)
 
 
 ## 🔧 Instalação
@@ -62,64 +70,146 @@ A aplicação conta com uma interface interativa gerada pelo Swagger, permitindo
   - Acesse: `http://localhost:8080/swagger-ui.html`
 
 
+## 🚀 Acesso e Implantação
+
+A aplicação **YardFlow** está atualmente hospedada no **Azure App Service** e pode ser acessada através do link abaixo:
+
+🔗 **Acesse:** [YardFlow Web App](https://yardflow-rm554556.azurewebsites.net)
+  
+````
+      Dados para acesso
+      
+      -> E-mail - ana.souza@example.com
+      -> Senha - 123456
+````
+
+
 ## 🗂 Estrutura
 ```
 src
 └── main
-├── java
-│ └── org.example.yardflow
-│ ├── configuration
-| | ├──MapperConfig
-│ ├── control
-| | ├──ClienteController
-│ │ ├── MotoController
-| | ├── PatioController
-| | ├── Registro_in_outController
-│ │ └── VagasControler
-│ ├── dto
-│ │ ├── ClienteDTO
-| | ├── MotoDTO
-| | ├── PatioDTO
-| | ├── Registro_in_outDTO
-│ │ └── VagaDTO
-| | |__ PatioDTO
-│ ├── exception
-| | ├──ExceptionGlobal
-│ ├── model
-│ │ ├── Cliente
-│ │ ├── ModeloEnum
-│ │ ├── Moto
-│ │ ├── Patio
-│ │ ├── PlanoEnum
-│ │ ├── Registro_check_in_Out
-│ │ ├── SetorEnum
-│ │ └── Vaga
-│ ├── projection
-| | ├──PermanenciaPorSetor
-│ ├── repository
-│ │ ├── ClienteRepositorio
-│ │ ├── MotoRepositorio
-│ │ ├── PatioRepositorio
-│ │ ├── Registro_check_in_OutRepositorio
-│ │ └── VagasRepositorio
-│ ├── service
-│ │ ├── ClienteCachingService
-│ │ ├── MotoCachingService
-│ │ ├── PatioCachingService
-│ │ ├── Registro_check_in_OutCachingService
-│ │ └── VagasCachingService
-│ ├── swagger
-│ │ ├── SwaggerConfig
-│ └── YardFlowApplication
-└── resources
-├── application.properties
+    ├── java
+    │   └── org.example.yardflow
+    │       ├── configuration
+    │       │   ├── MapperConfig
+    │       │   └── ViewRoutesConfig
+    │       │
+    │       ├── control
+    │       │   ├── api
+    │       │   │   ├── MotoController
+    │       │   │   ├── PatioController
+    │       │   │   ├── Registro_check_in_outController
+    │       │   │   └── YardflowController
+    │       │   │
+    │       │   └── HTML
+    │       │       ├── HomeHTMLController
+    │       │       ├── LoginHTMLController
+    │       │       ├── MotoHTMLController
+    │       │       ├── PatioHTMLController
+    │       │       ├── UsuarioHTMLController
+    │       │       └── YardflowHTMLController
+    │       │
+    │       ├── dto
+    │       │   ├── MotoDTO
+    │       │   ├── PatioDTO
+    │       │   ├── Registro_check_in_outDTO
+    │       │   ├── RegistroPermanenciaDTO
+    │       │   ├── UsuarioDTO
+    │       │   └── YardflowDTO
+    │       │
+    │       ├── exception
+    │       │   └── ExceptionGlobal
+    │       │
+    │       ├── model
+    │       │   ├── Endereco
+    │       │   ├── EnumFuncao
+    │       │   ├── EnumModelo
+    │       │   ├── EnumSetor
+    │       │   ├── Funcao
+    │       │   ├── Moto
+    │       │   ├── Patio
+    │       │   ├── Registro_check_in_out
+    │       │   ├── Usuario
+    │       │   └── Yardflow
+    │       │
+    │       ├── repository
+    │       │   ├── FuncaoRepositorio
+    │       │   ├── MotoRepositorio
+    │       │   ├── PatioRepositorio
+    │       │   ├── Registro_check_in_outRepositorio
+    │       │   ├── UsuarioRepositorio
+    │       │   └── YardflowRepositorio
+    │       │
+    │       ├── security
+    │       │   └── SegurancaConfig
+    │       │
+    │       ├── service
+    │       │   ├── EnderecoService
+    │       │   ├── MotoCachingService
+    │       │   ├── PatioCachingService
+    │       │   ├── Registro_check_in_outCachingService
+    │       │   ├── UsuarioCachingService
+    │       │   ├── UsuarioDetailsService
+    │       │   └── YardflowCachingService
+    │       │
+    │       ├── swagger
+    │       │   └── SwaggerConfig
+    │       │
+    │       └── YardFlowApplication
+    │
+    └── resources
+        ├── db.migration
+        │   ├── V1__removendo_tabela.sql
+        │   ├── V2__criando_tabela.sql
+        │   ├── V3__insert_table.sql
+        │   ├── V4__corrigindo_relacionamento_yarflow_moto.sql
+        │   └── V5__constraint.sql
+        │
+        ├── static
+        │   ├── css
+        │   │   └──index.css
+        │   │
+        │   └── img
+        │       ├── Imagem1.png
+        │       ├── localizar.png
+        │       ├── logoDF.png
+        │       └── logoYF.png
+        │
+        ├── template
+        │   ├── cadastros
+        │   │   ├── editarMoto.html
+        │   │   ├── editarYardflow.html
+        │   │   ├── moto.html
+        │   │   ├── novoPatio.html
+        │   │   ├── novoYardflow.html
+        │   │   ├── patio.html
+        │   │   ├── usuario.html
+        │   │   └── yardflow.html
+        │   │
+        │   ├── consultas
+        │   │   ├── listaMoto.html
+        │   │   ├── listaUsuarios.html
+        │   │   ├── listaYardflow.html
+        │   │   ├── localizarMoto.html
+        │   │   └── resultadoBuscaMoto.html
+        │   │
+        │   ├── usuario
+        │   │   ├── editar.html
+        │   │   └── lista.html
+        │   │
+        │   ├── fragmentos.html
+        │   ├── home.html
+        │   └── index.html
+        │
+        ├── application.properties
+        └── import.sql
 ```
 
 
 ## 🚧 Status da Aplicação 
  - Aplicação em Desenvolvimento
-   - Cronograma de exceução
-     - 30% finalizado até 23/05/2025 (1° e 2° sprint)
+   - Cronograma de execução
+     - 30% finalizado em  23/05/2025 (1° e 2° sprint)
      - 30% finalizado em  28/09/2025 (3° sprint)
      - 40% finalizado em  09/11/2025 (4° sprint)     
 
