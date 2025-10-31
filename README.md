@@ -11,6 +11,7 @@ posicionamento de cada veículo.
 ```
 
 
+
 ## 📌 Índice
 - [Funcionalidades](#-funcionalidades)
 - [Tecnologias](#-tecnologias)
@@ -21,6 +22,7 @@ posicionamento de cada veículo.
 - [Estrutura](#-estrutura)
 - [Status da Aplicação](#-status-da-aplicação)
 - [Autores](#-autores)
+
   
 
 ## 🚀 Funcionalidades
@@ -35,6 +37,7 @@ posicionamento de cada veículo.
     - Localizar o dispositio IoT 'YardFlow'
 
 
+
 ## 💻 Tecnologias
   - Java (v.17)
   - Maven 
@@ -46,6 +49,7 @@ posicionamento de cada veículo.
    - Flyway 10.17.2 (migrations)
 
 
+
 ## 📋 Pré-requisitos
   - IDEA
     - Intellij, ou
@@ -55,19 +59,23 @@ posicionamento de cada veículo.
   - SQL Server (versão compatível com o projeto)
 
 
+
 ## 🔧 Instalação
  - git clone https://github.com/KarenMarquesS/YardFlow.git
  - cd yardflow
  - mvn clean install 
 
 
+
 ## 🏃 Execução
  - mvn spring-boot:run
+
 
 
 ## 📘 Documentação da API
 A aplicação conta com uma interface interativa gerada pelo Swagger, permitindo testar os endpoints diretamente pelo navegador.
   - Acesse: `http://localhost:8080/swagger-ui.html`
+
 
 
 ## 🚀 Acesso e Implantação
@@ -82,6 +90,7 @@ A aplicação **YardFlow** está atualmente hospedada no **Azure App Service** e
       -> E-mail - ana.souza@example.com
       -> Senha - 123456
 ````
+
 
 
 ## 🗂 Estrutura
@@ -206,12 +215,14 @@ src
 ```
 
 
+
 ## 🚧 Status da Aplicação 
  - Aplicação em Desenvolvimento
    - Cronograma de execução
      - 30% finalizado em  23/05/2025 (1° e 2° sprint)
      - 30% finalizado em  28/09/2025 (3° sprint)
      - 40% finalizado em  09/11/2025 (4° sprint)     
+
 
 
 ## 👥 Autores
