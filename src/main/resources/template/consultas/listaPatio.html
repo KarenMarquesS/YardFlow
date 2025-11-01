@@ -2,9 +2,11 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>YardFlow - Lista de Usuários</title>
+    <title>YardFlow - Lista de Pátios</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <style th:replace="~{fragmentos :: backgroudScreen}"></style>
 
 <body class="bg-green-50 font-sans flex flex-col min-h-screen">
@@ -19,37 +21,40 @@
 <!-- Conteúdo principal -->
 <main class="flex-grow py-10 px-6">
     <div class="bg-white border border-green-700 rounded-2xl shadow-lg w-full max-w-6xl mx-auto p-6">
-        <h2 class="text-2xl font-bold text-center mb-6 text-green-800">Lista de Usuários</h2>
+        <h2 class="text-2xl font-bold text-center mb-6 text-green-800">Lista de Pátios</h2>
 
         <!-- Tabela -->
         <div class="overflow-x-auto">
             <table class="min-w-full border border-green-700 rounded-lg overflow-hidden">
                 <thead class="bg-green-600 text-white">
                 <tr>
+                    <th class="px-4 py-2 text-left">ID Pátio</th>
                     <th class="px-4 py-2 text-left">Nome</th>
-                    <th class="px-4 py-2 text-left">Função</th>
-                    <th class="px-4 py-2 text-left">E-mail</th>
-                    <th class="px-4 py-2 text-left">Ações</th>
+                    <th class="px-4 py-2 text-left">Quantidade de Vagas</th>
+                    <th class="px-4 py-2 text-center">Ações</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-green-200">
-                <tr th:each="usuario : ${usuarios}">
-                    <td class="px-4 py-2 text-green-900" th:text="${usuario.nome}"></td>
-                    <td class="px-4 py-2 text-green-900" th:text="${usuario.funcao != null ? usuario.funcao.nome : 'N/A'}"></td>
-                    <td class="px-4 py-2 text-green-900" th:text="${usuario.email}"></td>
+                <tr th:each="patio : ${patios}">
+                    <td class="px-4 py-2 text-green-900" th:text="${patio.idpatio}"></td>
+                    <td class="px-4 py-2 text-green-900" th:text="${patio.name}"></td>
+                    <td class="px-4 py-2 text-green-900" th:text="${patio.qtdvagas}"></td>
                     <td class="px-4 py-2 text-center">
                         <div class="flex justify-center space-x-2">
-                            <a th:href="@{/usuario/editar/{id}(id=${usuario.id})}"
+                            <a th:href="@{/patio/editar/{id}(id=${patio.idpatio})}"
                                class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-200"
-                               title="Editar usuario">
+                               title="Editar pátio">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a th:href="@{/usuario/deletar/{id}(id=${usuario.id})}"
-                               class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-200"
-                               title="Excluir usuario"
-                               onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
-                                <i class="fas fa-trash"></i>
-                            </a>
+                            <form th:action="@{/patio/deletar/{id}(id=${patio.idpatio})}" method="post" style="display: inline;">
+                                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                                <button type="submit" 
+                                        class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-200"
+                                        title="Excluir pátio"
+                                        onclick="return confirm('Tem certeza que deseja excluir este pátio?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -71,3 +76,4 @@
 
 </body>
 </html>
+
