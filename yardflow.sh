@@ -41,10 +41,7 @@ az webapp config appsettings set \
   --name "$WEBAPP_NAME" \
   --resource-group "$RESOURCE_GROUP_NAME" \
   --settings \
-    SPRING_DATASOURCE_USERNAME="admsql" \
-    SPRING_DATASOURCE_PASSWORD="Fiap@2tdsvms" \
-    SPRING_DATASOURCE_URL="jdbc:sqlserver://sqlserver-yardflow-rm554556.database.windows.net:1433;database=devforge-yardflowdb;user=admsql@sqlserver-yardflow-rm554556;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
-
+    
 
 # Reiniciar o Web App
 az webapp restart \
