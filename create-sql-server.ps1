@@ -2,8 +2,7 @@ $RG = "rg-devforge-yardflow"
 $LOCATION = "brazilsouth"
 $AZURE_SQL_SERVER="sqlserver-yardflow-rm554556"
 $AZURE_SQL_DATABASE="devforge-yardflowdb"
-$AZURE_SQL_USERNAME="admsql"
-$AZURE_SQL_PASSWORD="Fiap@2tdsvms"
+
 
 
 az group create --name $RG --location $LOCATION
