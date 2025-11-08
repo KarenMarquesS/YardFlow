@@ -82,7 +82,7 @@ A aplicação conta com uma interface interativa gerada pelo Swagger, permitindo
 
 A aplicação **YardFlow** está atualmente hospedada no **Azure App Service** e pode ser acessada através do link abaixo:
 
-🔗 **Acesse:** [YardFlow Web App](https://yardflow-rm554556.azurewebsites.net)
+🔗 **Acesse:** [YardFlow Web App](yardflowdevforge.azurewebsites.net)
   
 ````
       Dados para acesso
